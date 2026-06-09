@@ -1,0 +1,12 @@
+import { createClient } from "@/lib/supabase/server";
+import LandingPageClient from "./LandingPageClient";
+
+export default async function Home() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  return <LandingPageClient user={user} />;
+}
+
